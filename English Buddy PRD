@@ -1,0 +1,544 @@
+Certainly. Here's a **carefully rewritten, full version** of your **English Buddy PRD** with consistent formatting, improved clarity, and no loss of content:
+
+---
+
+# 🚀 Product Requirement Document (PRD)
+
+## **English Buddy: AI-Powered Language Learning Chatbot**
+
+---
+
+## 2. PRODUCT OVERVIEW
+
+### 2.1 Core Objectives
+
+#### **Personalized, Interactive English Language Learning**
+
+* Develop an AI-driven platform tailored to each user's language needs.
+* Create dynamic conversations that adapt to individual communication styles.
+* Provide personalized feedback and strategies based on performance.
+
+#### **Real-Time Conversational Practice**
+
+* Simulate engaging, realistic conversations across topics and difficulty levels.
+* Enable safe, judgment-free English practice.
+* Mimic real-world communication to build practical fluency.
+
+#### **Adaptive Learning Experiences**
+
+* Use intelligent difficulty scaling.
+* Adjust grammar, vocabulary, and topics dynamically.
+* Create evolving learning paths based on user progress.
+
+#### **Systematic Skill Improvement**
+
+* Track performance across grammar, vocabulary, pronunciation, fluency, and cultural understanding.
+* Provide insights into strengths and areas for improvement.
+* Offer actionable learning recommendations.
+
+---
+
+### 2.2 Key Features
+
+#### **Multi-Agent Conversational AI System**
+
+* Specialized agents with defined roles:
+
+  * **Conversation Coach Agent**
+  * **Grammar Tutor Agent**
+  * **Vocabulary Expansion Agent**
+  * **Pronunciation Guide Agent**
+  * **Cultural Context Agent**
+  * **Evaluator Agent**
+* Agents collaborate intelligently with seamless handoffs.
+* Context is preserved throughout conversations.
+
+#### **Telegram Bot Interface**
+
+* User-friendly and accessible platform.
+* Command-based interaction:
+
+  * `/newchat` – Start new conversation
+  * `/review` – Review conversation insights
+  * `/quiz` – Take skill assessment
+  * `/dashboard` – View progress
+  * `/help` – Access support and tips
+
+#### **Personalized Learning Paths**
+
+* Generated using machine learning.
+* Weekly assessments refine strategies.
+* Adaptive content difficulty and goal-oriented learning.
+
+#### **Weekly Progress Evaluation**
+
+* Performance reports with skill breakdowns.
+* Identify improvement areas.
+* Update learning strategies.
+* Visual tracking of progress.
+
+#### **Interactive Quizzes and Exercises**
+
+* Grammar, vocabulary, pronunciation, and contextual comprehension.
+* Dynamically generated with immediate feedback.
+* Gamified to boost engagement.
+
+#### **Detailed Feature Breakdown**
+
+* **Conversation Dynamics**: Multi-turn, error correction, contextual learning.
+* **Skill Tracking Dimensions**:
+
+  * Grammatical Accuracy
+  * Vocabulary Richness
+  * Pronunciation Clarity
+  * Conversational Fluency
+  * Cultural Comprehension
+* **Learning Principles**: Encouragement-based, constructive feedback, low-stress environment.
+* **Technical Innovation**: Multi-agent collaboration, adaptive learning, semantic understanding.
+* **User Experience**: Intuitive, personalized, motivating, flexible.
+* **Differentiation**:
+
+  * Adaptive AI
+  * Skill-based progress tracking
+  * Telegram accessibility
+  * Sophisticated agent architecture
+
+---
+
+## 3. SYSTEM ARCHITECTURE
+
+### 3.1 Agent Ecosystem
+
+#### **Conversation Coach Agent**
+
+* **Goal**: Facilitate engaging conversations.
+* **Responsibilities**:
+
+  * Maintain relevant dialogue.
+  * Adapt complexity.
+  * Detect and correct awkwardness.
+  * Encourage participation.
+* **Implementation**:
+
+  * NLP for context
+  * Sentiment analysis
+  * Topic selection
+  * Error detection
+
+#### **Grammar Tutor Agent**
+
+* **Goal**: Guide grammar use.
+* **Responsibilities**:
+
+  * Analyze and correct grammar.
+  * Provide clear explanations.
+  * Offer examples and exercises.
+* **Implementation**:
+
+  * Parsing algorithms
+  * Rule-based + ML error detection
+  * Adaptive explanations
+
+#### **Vocabulary Expansion Agent**
+
+* **Goal**: Enrich vocabulary.
+* **Responsibilities**:
+
+  * Introduce new words
+  * Suggest synonyms/idioms
+  * Provide contextual usage
+  * Track retention
+* **Implementation**:
+
+  * Contextual suggestions
+  * Spaced repetition
+  * Difficulty tracking
+
+#### **Pronunciation Guide Agent**
+
+* **Goal**: Improve pronunciation.
+* **Responsibilities**:
+
+  * Analyze speech
+  * Offer pronunciation tips
+  * Give phonetic guidance
+  * Provide exercises
+* **Implementation**:
+
+  * Phonetic analysis
+  * Scoring system
+  * Text-to-speech integration (optional)
+
+#### **Cultural Context Agent**
+
+* **Goal**: Provide cultural insights.
+* **Responsibilities**:
+
+  * Explain idioms and origins
+  * Share cultural context and nuances
+  * Highlight regional differences
+* **Implementation**:
+
+  * Cultural knowledge base
+  * Contextual language analysis
+
+#### **Evaluator Agent**
+
+* **Goal**: Assess and guide improvement.
+* **Responsibilities**:
+
+  * Weekly multi-skill assessments
+  * Analyze conversations
+  * Generate reports and recommendations
+* **Implementation**:
+
+  * Skill scoring algorithms
+  * Performance prediction (ML)
+  * Adaptive learning path updates
+
+### Agent Collaboration Architecture
+
+* **Supervisor Agent** orchestrates interactions.
+* Shared state via **LangGraph**.
+* Context preserved across handoffs.
+
+#### Communication & State
+
+* Standardized state update mechanisms.
+* Context sharing and prioritization.
+* Persistent user profiles and conversation logs.
+
+#### Scalability
+
+* Modular agents
+* Horizontal scaling
+* Efficient processing
+
+#### Machine Learning
+
+* Performance-driven model updates
+* Personalized difficulty adjustment
+
+---
+
+## 4. TECHNICAL SPECIFICATIONS
+
+### 4.1 Technology Stack
+
+* **Language**: Python 3.10+
+* **Frameworks**:
+
+  * **LangChain** – Agent workflows and prompts
+  * **LangGraph** – State management and orchestration
+* **Database**: PostgreSQL 14+
+
+  * Extensions: `pgvector`, `pg_stat_statements`
+* **Vector Store**: `pgvector`
+
+  * Embedding: `text-embedding-3-large` (1536 dim)
+* **Deployment**:
+
+  * Docker (containerization)
+  * Kubernetes (orchestration)
+* **Communication**: Telegram Bot API
+
+---
+
+### 4.2 Data Models
+
+#### **UserProfile**
+
+```python
+class UserProfile:
+    user_id: UUID
+    username: str
+    email: Optional[str]
+    proficiency_level: str
+    learning_goals: List[str]
+    preferred_topics: List[str]
+    registration_date: DateTime
+    last_active: DateTime
+```
+
+#### **ConversationLog**
+
+```python
+class ConversationLog:
+    log_id: UUID
+    user_id: UUID
+    agent_interactions: List[AgentInteraction]
+    start_time: DateTime
+    end_time: DateTime
+    total_duration: TimeDelta
+    key_metrics: Dict[str, float]
+```
+
+#### **AgentFeedback**
+
+```python
+class AgentFeedback:
+    feedback_id: UUID
+    user_id: UUID
+    agent_name: str
+    feedback_type: str  # grammar, vocabulary, pronunciation
+    detailed_feedback: JSONB
+    improvement_score: float
+    timestamp: DateTime
+```
+
+#### **AssessmentResult**
+
+```python
+class AssessmentResult:
+    assessment_id: UUID
+    user_id: UUID
+    quiz_type: str
+    score: float
+    max_score: float
+    detailed_breakdown: JSONB
+    skills_assessed: List[str]
+    timestamp: DateTime
+```
+
+#### **LearningPath**
+
+```python
+class LearningPath:
+    user_id: UUID
+    current_focus_areas: List[str]
+    recommended_exercises: List[Exercise]
+    progress_percentage: Dict[str, float]
+    next_recommended_action: str
+    last_updated: DateTime
+```
+
+---
+
+### 4.3 Memory Management
+
+#### Short-Term Memory
+
+* Stored in-memory via LangGraph.
+* Retains:
+
+  * Message history
+  * Current topic
+  * Agent outputs
+  * Context flags
+
+#### Long-Term Tracking
+
+* Stored in PostgreSQL.
+* Weekly batch analysis:
+
+  * Aggregates logs
+  * Generates embeddings
+  * Clusters for patterns
+  * Updates learning paths
+  * Generates reports
+
+---
+
+## 5. USER EXPERIENCE
+
+### 5.1 Telegram Bot Commands
+
+#### `/newchat`
+
+* Resets context.
+* Prompts user for topics.
+* Adjusts agent responses dynamically.
+
+**Example:**
+
+```text
+🌟 Welcome to a new English learning adventure!
+What would you like to discuss today?
+1. Daily life
+2. Hobby
+3. Work
+4. Random
+```
+
+---
+
+#### `/review`
+
+* Retrieves past insights.
+* Shows grammar, vocabulary, pronunciation progress.
+* Includes visual charts and summaries.
+
+**Example:**
+
+```text
+📊 Your Weekly English Learning Review
+Grammar: ⭐⭐⭐⭐ (85%)
+Vocabulary: ⭐⭐⭐ (75%)
+Pronunciation: ⭐⭐⭐⭐ (90%)
+
+Top Improvements:
+- Past perfect tense
+- Business vocabulary
+- Pronunciation of 'th'
+
+Recommended Focus:
+- Conditionals
+- Idioms
+```
+
+---
+
+#### `/quiz`
+
+* Covers:
+
+  * Grammar
+  * Vocabulary
+  * Listening
+  * Speaking
+  * Culture
+* Features:
+
+  * Adaptive difficulty
+  * Instant feedback
+  * Gamification
+
+**Example:**
+
+```text
+🧠 Grammar Quiz
+"She ____ (work) at the company for five years."
+A) has worked  ✅
+B) is working
+C) worked
+D) works
+
+Your score: 4/5 ⭐⭐⭐⭐
+```
+
+---
+
+#### `/dashboard`
+
+* Shows:
+
+  * Proficiency level
+  * Hours learned
+  * Skill heatmaps
+  * Milestones
+  * Personalized tips
+
+**Example:**
+
+```text
+🏆 English Buddy Dashboard
+Level: B1 (Intermediate)
+Hours: 42h
+
+Grammar: ████████░░ (80%)
+Vocabulary: ███████░░░ (70%)
+Pronunciation: ████████████ (95%)
+Culture: ████████░░ (85%)
+
+Next Milestone: Business English Certificate
+```
+
+---
+
+#### `/help`
+
+* Full guide on:
+
+  * Commands
+  * Tips
+  * Troubleshooting
+  * Contact support
+
+---
+
+### 5.2 Interaction Flow
+
+#### Natural Conversations
+
+* Context-aware
+* Encouraging and flexible
+* Increasing difficulty
+
+#### Real-Time Feedback
+
+* Gentle corrections
+* Inline suggestions
+* Clear, non-intrusive explanations
+
+**Example:**
+
+```text
+User: "I go to park yesterday"
+🤖 Try: "I went to the park yesterday"
+Explanation: Use past tense "went" for completed actions.
+```
+
+#### Adaptive Difficulty
+
+* Based on:
+
+  * Quiz results
+  * Conversation complexity
+  * Error frequency
+  * User feedback
+
+#### Gamification
+
+* XP system
+* Badges
+* Weekly/monthly challenges
+* Leaderboards
+* Social sharing
+
+---
+
+## 🚀 Implementation Roadmap
+
+### **Phase 1: Foundation (4–6 weeks)**
+
+* Python + PostgreSQL setup
+* LangChain + LangGraph base
+* Initial agents (6 total)
+
+### **Phase 2: Telegram Bot (3–4 weeks)**
+
+* Telegram bot creation
+* Webhook setup
+* Command integration
+* Agent connection
+
+### **Phase 3: ML Integration (4–5 weeks)**
+
+* Embedding and semantic search
+* Adaptive algorithms
+* Error detection
+* Recommendation engine
+
+### **Phase 4: Gamification & Evaluation (4–5 weeks)**
+
+* XP, badges, milestones
+* Skill evaluation scoring
+* Visualization tools
+
+### **Phase 5: Testing & Deployment (3–4 weeks)**
+
+* Unit + integration testing
+* Docker + Kubernetes
+* CI/CD pipeline
+* Soft launch and monitoring
+
+### **Phase 6: Continuous Improvement (Ongoing)**
+
+* Feedback collection
+* Model retraining
+* New features
+* Language expansion
+
+---
+
+Let me know if you want this version exported as a `.docx`, PDF, or Notion-compatible format.
